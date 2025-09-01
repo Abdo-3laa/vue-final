@@ -5,12 +5,12 @@
       <div
         v-for="item in cart.items"
         :key="item.id"
-        class="cart-item d-flex align-items-center p-3 mb-3 bg-white rounded shadow-sm"
+        class="cart-item d-flex flex-wrap flex-md-nowrap align-items-center p-3 mb-3 bg-white rounded shadow-sm"
       >
         <img
           :src="item.image"
           alt="product"
-          class="cart-item-img me-4"
+          class="cart-item-img me-md-4 mb-3 mb-md-0"
         />
         <div class="flex-grow-1">
           <div class="fw-semibold fs-5 mb-1">{{ item.title }}</div>
@@ -34,14 +34,16 @@
             <i class="bi bi-trash me-1"></i> Remove
           </button>
         </div>
-        <div class="fw-bold fs-5 ms-4 text-end" style="min-width: 100px;">
+        <div class="fw-bold fs-5 ms-md-4 mt-3 mt-md-0 text-end price-box">
           $ {{ (item.price * item.quantity).toFixed(2) }}
         </div>
       </div>
-      <div class="cart-summary bg-summary p-3 rounded shadow-sm mt-4 d-flex justify-content-between align-items-center">
+
+      <div class="cart-summary bg-summary p-3 rounded shadow-sm mt-4 d-flex justify-content-between align-items-center flex-wrap">
         <span class="fw-bold fs-5">Total:</span>
         <span class="fw-bold fs-4 text-success">$ {{ totalPrice.toFixed(2) }}</span>
       </div>
+
       <div class="d-flex justify-content-between mt-4 gap-3 flex-wrap">
         <router-link to="/products" class="btn btn-warning btn-lg d-flex align-items-center">
           <i class="bi bi-arrow-left me-2"></i> Continue Shopping
@@ -76,8 +78,8 @@ export default {
 
 <style scoped>
 .cart-amazon-style {
-  max-width: 800px;
-  margin: 80px auto 40px auto; /* مسافة من فوق علشان يبعد عن الـ Navbar */
+  max-width: 950px; /* وسعنا الكارت أكتر */
+  margin: 80px auto 40px auto;
   background: #f6f6f6;
   min-height: 80vh;
   padding: 30px;
@@ -87,14 +89,15 @@ export default {
 .cart-item {
   border: 1px solid #e3e3e3;
   transition: box-shadow 0.2s;
+  min-width: 100%;
 }
 .cart-item:hover {
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
 
 .cart-item-img {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
   background: #fff;
   border: 1px solid #eee;
@@ -122,5 +125,28 @@ export default {
 
 .bg-summary {
   background: linear-gradient(90deg, #fffbe6 0%, #ffe0b2 100%);
+}
+
+/* السعر في صندوق علشان ما يطلعش برا */
+.price-box {
+  min-width: 120px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Responsiveness للموبايل */
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .price-box {
+    text-align: left;
+    margin-left: 0;
+  }
+  .cart-item-img {
+    width: 100px;
+    height: 100px;
+  }
 }
 </style>
