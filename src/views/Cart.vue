@@ -1,7 +1,9 @@
 <template>
   <div class="cart-amazon-style pt-5 py-4">
     <h2 class="mb-4 fw-bold border-bottom pb-2">Your Cart</h2>
+
     <div v-if="cart.items.length">
+      <!-- لو فيه منتجات -->
       <div
         v-for="item in cart.items"
         :key="item.id"
@@ -39,11 +41,13 @@
         </div>
       </div>
 
+      <!-- ملخص الكارت -->
       <div class="cart-summary bg-summary p-3 rounded shadow-sm mt-4 d-flex justify-content-between align-items-center flex-wrap">
         <span class="fw-bold fs-5">Total:</span>
         <span class="fw-bold fs-4 text-success">$ {{ totalPrice.toFixed(2) }}</span>
       </div>
 
+      <!-- الأزرار -->
       <div class="d-flex justify-content-between mt-4 gap-3 flex-wrap">
         <router-link to="/products" class="btn btn-warning btn-lg d-flex align-items-center">
           <i class="bi bi-arrow-left me-2"></i> Continue Shopping
@@ -53,8 +57,15 @@
         </button>
       </div>
     </div>
-    <div v-else class="alert alert-info mt-4">
-      Your cart is empty.
+
+    <!-- لو الكارت فاضي -->
+    <div v-else class="empty-cart text-center py-5">
+      <i class="bi bi-cart-x display-1 text-muted mb-3"></i>
+      <h4 class="fw-bold">Your cart is empty</h4>
+      <p class="text-muted">Looks like you haven't added any items yet.</p>
+      <router-link to="/products" class="btn btn-primary btn-lg mt-3 d-inline-flex align-items-center">
+        <i class="bi bi-shop me-2"></i> Start Shopping
+      </router-link>
     </div>
   </div>
 </template>
@@ -78,7 +89,7 @@ export default {
 
 <style scoped>
 .cart-amazon-style {
-  max-width: 950px; /* وسعنا الكارت أكتر */
+  max-width: 950px;
   margin: 80px auto 40px auto;
   background: #f6f6f6;
   min-height: 80vh;
@@ -127,14 +138,24 @@ export default {
   background: linear-gradient(90deg, #fffbe6 0%, #ffe0b2 100%);
 }
 
-/* السعر في صندوق علشان ما يطلعش برا */
 .price-box {
   min-width: 120px;
   text-align: right;
   white-space: nowrap;
 }
 
-/* Responsiveness للموبايل */
+/* شاشة الكارت الفاضي */
+.empty-cart {
+  color: #444;
+}
+.empty-cart p {
+  font-size: 1.1rem;
+}
+.empty-cart i {
+  opacity: 0.6;
+}
+
+/* Responsiveness */
 @media (max-width: 768px) {
   .cart-item {
     flex-direction: column;
