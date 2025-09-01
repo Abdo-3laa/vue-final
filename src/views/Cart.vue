@@ -1,5 +1,5 @@
 <template>
-  <div class="cart-amazon-style py-4">
+  <div class="cart-amazon-style pt-5 py-4">
     <h2 class="mb-4 fw-bold border-bottom pb-2">Your Cart</h2>
     <div v-if="cart.items.length">
       <div
@@ -77,10 +77,13 @@ export default {
 <style scoped>
 .cart-amazon-style {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 80px auto 40px auto; /* مسافة من فوق علشان يبعد عن الـ Navbar */
   background: #f6f6f6;
   min-height: 80vh;
+  padding: 30px;
+  border-radius: 12px;
 }
+
 .cart-item {
   border: 1px solid #e3e3e3;
   transition: box-shadow 0.2s;
@@ -88,6 +91,7 @@ export default {
 .cart-item:hover {
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
+
 .cart-item-img {
   width: 100px;
   height: 100px;
@@ -97,6 +101,7 @@ export default {
   padding: 8px;
   border-radius: 8px;
 }
+
 .cart-qty-badge {
   background: linear-gradient(90deg, #ffd700 0%, #ff9900 100%);
   color: #222;
@@ -110,9 +115,11 @@ export default {
   margin: 0 2px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.07);
 }
+
 .cart-summary {
   border: 1px solid #e3e3e3;
 }
+
 .bg-summary {
   background: linear-gradient(90deg, #fffbe6 0%, #ffe0b2 100%);
 }
