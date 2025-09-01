@@ -33,12 +33,12 @@ function increaseQuantity(productId) {
   if (item) item.quantity++
 }
 
-function decreaseQuantity(id) {
-  const item = this.cart.items.find((i) => i.id === id)
+function decreaseQuantity(productId) {
+  const item = cart.items.find((i) => i.id === productId)
   if (item) {
     item.quantity--
     if (item.quantity <= 0) {
-      this.cart.items = this.cart.items.filter((i) => i.id !== id)
+      cart.items = cart.items.filter((i) => i.id !== productId)
     }
   }
 }
